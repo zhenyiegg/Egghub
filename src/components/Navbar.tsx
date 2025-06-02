@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 lg:h-20 xl:h-24">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent leading-normal py-1">
+            <a href={`${import.meta.env.BASE_URL}`} className="text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent leading-normal py-1">
               🥚 EggHub
             </a>
           </div>
@@ -30,10 +30,10 @@ const Navbar = () => {
                 {/* Dropdown Menu */}
                 <div className="absolute left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-orange-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                   <div className="py-2">
-                    <a href="/probability" className="block px-4 py-2 text-sm lg:text-base text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                    <a href={`${import.meta.env.BASE_URL}probability`} className="block px-4 py-2 text-sm lg:text-base text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
                       Probability
                     </a>
-                    <a href="/corkboard" className="block px-4 py-2 text-sm lg:text-base text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                    <a href={`${import.meta.env.BASE_URL}corkboard`} className="block px-4 py-2 text-sm lg:text-base text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
                       Corkboard
                     </a>
                   </div>
@@ -76,10 +76,10 @@ const Navbar = () => {
                 </button>
                 {isFeaturesOpen && (
                   <div className="ml-4 space-y-1">
-                    <a href="/probability" className="block px-3 py-2 text-sm text-gray-600 hover:text-orange-600">
+                    <a href={`${import.meta.env.BASE_URL}probability`} className="block px-3 py-2 text-sm text-gray-600 hover:text-orange-600">
                       Probability
                     </a>
-                    <a href="/corkboard" className="block px-3 py-2 text-sm text-gray-600 hover:text-orange-600">
+                    <a href={`${import.meta.env.BASE_URL}corkboard`} className="block px-3 py-2 text-sm text-gray-600 hover:text-orange-600">
                       Corkboard
                     </a>
                   </div>
