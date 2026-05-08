@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Isekai from "./pages/Isekai";
 import Probability from "./pages/Probability";
+import Corkboard from "./pages/Corkboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Homepage />} />
           <Route path="/isekai" element={<Isekai />} />
           <Route path="/probability" element={<Probability />} />
+          <Route path="/corkboard" element={<Corkboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
