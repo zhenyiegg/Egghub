@@ -30,6 +30,9 @@ const Navbar = () => {
                 {/* Dropdown Menu */}
                 <div className="absolute left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-orange-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                   <div className="py-2">
+                    <a href={`${import.meta.env.BASE_URL}isekai`} className="block px-4 py-2 text-sm lg:text-base text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                      Isekai Status
+                    </a>
                     <a href={`${import.meta.env.BASE_URL}probability`} className="block px-4 py-2 text-sm lg:text-base text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
                       Probability
                     </a>
@@ -76,6 +79,9 @@ const Navbar = () => {
                 </button>
                 {isFeaturesOpen && (
                   <div className="ml-4 space-y-1">
+                    <a href={`${import.meta.env.BASE_URL}isekai`} className="block px-3 py-2 text-sm text-gray-600 hover:text-orange-600">
+                      Isekai Status
+                    </a>
                     <a href={`${import.meta.env.BASE_URL}probability`} className="block px-3 py-2 text-sm text-gray-600 hover:text-orange-600">
                       Probability
                     </a>
