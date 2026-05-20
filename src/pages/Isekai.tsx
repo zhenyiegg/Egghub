@@ -96,7 +96,6 @@ const normalizeMonster = (
   return {
     ...nextMonster,
     attackPoint: clamp(nextMonster.attackPoint, 0, 5),
-    currentHealth: clamp(nextMonster.currentHealth, 0, nextMonster.maxHealth),
   };
 };
 
@@ -159,14 +158,6 @@ const Isekai = () => {
             : Math.max(0, toNumber(value)),
       };
 
-      if (field === "maxHealth") {
-        nextHero.currentHealth = clamp(
-          nextHero.currentHealth,
-          0,
-          nextHero.maxHealth,
-        );
-      }
-
       if (field === "currentHealth") {
         nextHero.currentHealth = clamp(
           toNumber(value),
@@ -207,14 +198,6 @@ const Isekai = () => {
             ? clamp(toNumber(value), 0, 5)
             : Math.max(0, toNumber(value)),
       };
-
-      if (field === "maxHealth") {
-        nextMonster.currentHealth = clamp(
-          nextMonster.currentHealth,
-          0,
-          nextMonster.maxHealth,
-        );
-      }
 
       if (field === "currentHealth") {
         nextMonster.currentHealth = clamp(
@@ -693,25 +676,55 @@ const NumberField = ({
   max,
   value,
   onChange,
-}: NumberFieldProps) => (
-  <label className="block">
-    <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
-      {icon}
-      {label}
-      {max !== undefined && (
-        <span className="text-xs font-medium text-gray-500">Max {max}</span>
-      )}
-    </span>
-    <Input
-      type="number"
-      min={0}
-      max={max}
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-      className="border-gray-300 bg-white focus-visible:border-orange-500 focus-visible:ring-orange-200"
-    />
-  </label>
-);
+}: NumberFieldProps) => {
+  const [draftValue, setDraftValue] = useState(String(value));
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (!isEditing) {
+      setDraftValue(String(value));
+    }
+  }, [isEditing, value]);
+
+  return (
+    <label className="block">
+      <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
+        {icon}
+        {label}
+        {max !== undefined && (
+          <span className="text-xs font-medium text-gray-500">Max {max}</span>
+        )}
+      </span>
+      <Input
+        type="number"
+        min={0}
+        max={max}
+        value={isEditing ? draftValue : value}
+        onFocus={() => {
+          setIsEditing(true);
+          setDraftValue(String(value));
+        }}
+        onChange={(event) => {
+          const nextValue = event.target.value;
+
+          setDraftValue(nextValue);
+
+          if (nextValue.trim() !== "") {
+            onChange(nextValue);
+          }
+        }}
+        onBlur={() => {
+          setIsEditing(false);
+
+          if (draftValue.trim() === "") {
+            onChange("0");
+          }
+        }}
+        className="border-gray-300 bg-white focus-visible:border-orange-500 focus-visible:ring-orange-200"
+      />
+    </label>
+  );
+};
 
 type TextAreaFieldProps = {
   icon: ReactNode;
